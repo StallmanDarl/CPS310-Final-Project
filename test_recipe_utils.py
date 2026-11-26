@@ -1,6 +1,6 @@
-"""Tests for the starter Recipe & Meal Planner."""
+"""Tests for the Recipe & Meal Planner."""
 
-import json
+import pytest, json
 
 from recipe_utils import (
     assign_recipe_to_day,
@@ -163,3 +163,69 @@ def test_search_by_ingredient_returns_empty_for_blank_search():
     ]
 
     assert search_by_ingredient(recipes, "   ") == []
+
+
+def test_create_weekly_meal_plan_contains_seven_days():
+    meal_plan = create_weekly_meal_plan()
+
+    assert len(meal_plan) == 7
+
+    assert list(meal_plan.keys()) == [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
+
+
+def test_create_weekly_meal_plan_starts_empty():
+    meal_plan = create_weekly_meal_plan()
+
+    assert all(recipe is None for recipe in meal_plan.values())
+
+
+def test_assign_recipe_to_day():
+    meal_plan = create_weekly_meal_plan()
+
+    recipe = {
+        "name": "Chicken Alfredo",
+        "category": "Dinner",
+    }
+
+    assign_recipe_to_day(meal_plan, "Monday", recipe)
+
+    assert meal_plan["Monday"] == recipe
+
+
+def test_assign_recipe_to_day_is_case_insensitive():
+    meal_plan = create_weekly_meal_plan()
+
+    recipe = {"name": "Berry Smoothie"}
+
+    assign_recipe_to_day(meal_plan, "monday", recipe)
+
+    assert meal_plan["Monday"] == recipe
+
+
+def test_assign_recipe_to_day_replaces_existing_recipe():
+    meal_plan = create_weekly_meal_plan()
+
+    first_recipe = {"name": "Chicken Alfredo"}
+    second_recipe = {"name": "Tomato Basil Pasta"}
+
+    assign_recipe_to_day(meal_plan, "Monday", first_recipe)
+    assign_recipe_to_day(meal_plan, "Monday", second_recipe)
+
+    assert meal_plan["Monday"] == second_recipe
+
+
+def test_assign_recipe_to_invalid_day_raises_error():
+    meal_plan = create_weekly_meal_plan()
+
+    recipe = {"name": "Chicken Alfredo"}
+
+    with pytest.raises(ValueError):
+        assign_recipe_to_day(meal_plan, "Funday", recipe)
