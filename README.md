@@ -1,4 +1,4 @@
-# CPS 310 Final Project Starter
+# CPS 310 Final Project
 ## Recipe & Meal Planner
 
 This repository contains the starter code for the CPS 310 final project.

@@ -1,4 +1,4 @@
-"""CPS 310 Recipe & Meal Planner starter application."""
+"""CPS 310 Recipe & Meal Planner application."""
 
 from recipe_utils import (
     assign_recipe_to_day,
