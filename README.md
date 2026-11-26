@@ -1,51 +1,90 @@
 # CPS 310 Final Project
 ## Recipe & Meal Planner
 
-This repository contains the starter code for the CPS 310 final project.
+A Python-based recipe management and meal planning
+application developed for CPS 310.
 
-The application currently supports:
+## Features
 
-- loading recipe data from JSON
-- listing all recipes
-- searching recipes by name
-- filtering recipes by category
-- viewing recipe details
-- loading basic configuration from `config.json`
+### Recipe Management
+- Load recipes from JSON files.
+- List all available recipes.
+- Search recipes by name.
+- Search recipes by ingredient.
+- Filter recipes by category.
+- View recipe details.
 
-This is intentionally a **starter project**, not a finished application.
+### Meal Planning
+- Create a seven-day meal plan.
+- Assign recipes to individual weekdays.
+- View the current weekly meal plan.
+- Replace previously assigned meals.
+
+### Planned Features
+- Generate grocery lists from weekly meal plans.
+
+## Project Structure
+
+- `app.py` - Main application and user interface.
+- `recipe_utils.py` - Recipe and meal planning functions.
+- `recipes.json` - Recipe data.
+- `config.json` - Application configuration.
+- `test_recipe_utils.py` - Automated tests.
+- `requirements.txt` - Python dependencies.
+
+## Requirements
+
+- Python 3.12 or newer.
+- Git.
+- Dependencies listed in `requirements.txt`.
 
 ## Setup
 
 ### Windows
 
+Create a virtual environment:
+
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+```
+
+Activate it:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```powershell
 python -m pip install -r requirements.txt
+```
+
+Run the application:
+
+```powershell
 python app.py
 ```
 
-### macOS
+## Running Tests
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-python3 app.py
-```
-
-## Run Tests
-
-### Windows
+Run the complete test suite:
 
 ```powershell
 python -m pytest -v
 ```
 
-### macOS
+## Development
 
-```bash
-python3 -m pytest -v
-```
+Features are developed on separate Git branches
+and integrated into `main` through GitHub Pull Requests.
 
-You are expected to make your own design decisions as you extend the project during the final project.
+Automated tests are used to verify existing and
+new application functionality.
+
+## Future Development
+
+- Generate grocery lists from weekly meal plans.
+- Add Docker support.
+- Configure automated testing with GitHub Actions.
+- Expand documentation and security practices.
